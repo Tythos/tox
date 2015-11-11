@@ -4,12 +4,8 @@ window.addEventListener("load", function() {
 	var e = require("elsel");
 	var hb = require("handlebars");
 	
-	// Grab model data
+	// Grab model data, compile template, render content to page
 	var data = JSON.parse(f("models/carriers.json"));
-	
-	// Create handlebars template
 	var template = hb.compile(f("visuals/supercarrier.html"));
-	
-	// Populate main content with compiled content
 	e("#content").innerHTML = template(data);
 });

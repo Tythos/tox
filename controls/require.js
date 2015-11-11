@@ -15,13 +15,15 @@ window.addEventListener('load', function() {
 		// Grab package definition and package entry point
 		var packDef = JSON.parse(fetch("controls/" + packName + "/package.json"));
 		var mainContent = fetch("controls/" + packName + "/" + packDef.main);
+
+		// Append new script tags
+		var s = document.createElement('script');
+		s.setAttribute('type', 'text/javascript');
+		s.appendChild(document.createTextNode(mainContent));
 		
-		// Evaluate package entry point and return module.exports
-		var pack = {};
+		// Retrieve and return module.exports symbol
 		module = {};
-		eval(mainContent);
-		pack = module.exports;
-		module = undefined;
-		return pack;
+		document.body.appendChild(s);
+		return module.exports;
 	};
 });
