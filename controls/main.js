@@ -3,9 +3,28 @@ window.addEventListener("load", function() {
 	var f = require("fetch");
 	var e = require("elsel");
 	var hb = require("handlebars");
+	var TB = require("ToxBoard");
 	
-	// Grab model data, compile template, render content to page
-	var data = JSON.parse(f("models/carriers.json"));
-	var template = hb.compile(f("visuals/supercarrier.html"));
-	e("#content").innerHTML = template(data);
+	// External application interface
+	Tox = {};
+	
+	// Instantiate board object and bind global methods
+	tb = TB();
+	Tox.move = function(x,y) {
+		if (tb.moves.length % 2 == 0) {
+			next = "X";
+		} else {
+			next = "O";
+		}
+		tb.state[x][y] = next;
+		tb.moves.push([x,y]);
+		var winner = tb.isWin();
+		if (winner) {
+			console.log("The winner is " + winner + "!");
+		} else if (tb.isCatsGame()) {
+			console.log("Draw!");
+		}
+		e("#content").innerHTML = tb.render();
+	};
+	e("#content").innerHTML = tb.render();
 });

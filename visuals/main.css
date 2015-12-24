@@ -4,15 +4,48 @@ body {
 	margin:0;
 }
 
-.entryWrapper {
-	margin:16px;
+#content {
 }
 
-.carrierClass {
-	font-weight:bold;
-	font-size:24pt;
+.toxboard {
+	font-family:monospace;
+	font-size:32pt;
 }
 
-.carrierDetails img {
-	width:256px;
+.toxsquare {
+	width:100px;
+	height:100px;
+	text-align:center;
+	vertical-align:middle;
+	border:1px solid #fff;
+}
+
+.toxsquare.clickable {
+	cursor:pointer;
+}
+
+.toxsquare.clickable:hover, .toxsquare.clickable:active {
+	background-color:#fff;
+	color:#000;
+}
+
+.indexCell {
+	text-align:center;
+	font-style:italic;
+	font-size:16pt;
+	color:#777;
+	padding:10px;
+	font-family:sans-serif;
+}
+
+.winningX {
+	color:#0f0;
+}
+
+.winningO {
+	color:#00f;	
+}
+
+.catsgame {
+	color:#f00;
 }
