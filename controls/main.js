@@ -7,6 +7,7 @@ window.addEventListener("load", function() {
 	
 	// External application interface
 	Tox = {};
+	var newGameLink = "<a href=\".\" onclick=\"tb.reset();return false;\">New Game?</a>";
 	
 	// Instantiate board object and bind global methods
 	tb = TB();
@@ -20,11 +21,12 @@ window.addEventListener("load", function() {
 		tb.moves.push([x,y]);
 		var winner = tb.isWin();
 		if (winner) {
-			console.log("The winner is " + winner + "!");
+			e("#content").innerHTML = "The winner is " + winner + "!<br/>" + newGameLink;
 		} else if (tb.isCatsGame()) {
-			console.log("Draw!");
+			e("#content").innerHTML = "Draw!<br/>" + newGameLink;
+		} else {
+			e("#content").innerHTML = tb.render();
 		}
-		e("#content").innerHTML = tb.render();
-	};
+	}
 	e("#content").innerHTML = tb.render();
 });
